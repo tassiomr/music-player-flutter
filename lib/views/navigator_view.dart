@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:music_preview_app/views/generator_view.dart";
 import "package:music_preview_app/views/seach_view.dart";
 
 class NavigatorView extends StatefulWidget {
@@ -25,12 +24,6 @@ class _NavigatorViewState extends State<NavigatorView> {
         {
           selectedPage = const Placeholder();
         }
-
-      case 2:
-        {
-          selectedPage = const SearchView();
-        }
-
       default:
         {
           selectedPage = const Placeholder();
@@ -42,18 +35,15 @@ class _NavigatorViewState extends State<NavigatorView> {
         children: [
           SafeArea(
               child: NavigationRail(
-            extended: true,
+            extended: false,
             destinations: const [
               NavigationRailDestination(
                   icon: Icon(Icons.search), label: Text("Search")),
-              NavigationRailDestination(
-                  icon: Icon(Icons.favorite), label: Text("Favorites")),
               NavigationRailDestination(
                   icon: Icon(Icons.person), label: Text("Profile")),
             ],
             selectedIndex: selectedIndex,
             onDestinationSelected: (index) {
-              print(index);
               setState(() {
                 selectedIndex = index;
               });
