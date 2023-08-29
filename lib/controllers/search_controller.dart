@@ -12,7 +12,6 @@ class SearchMusicController {
     var result = await _repository.getMusics(term);
     var decodeResult = Result.fromJson(jsonDecode(result.body));
 
-    print(decodeResult.resultCount);
     return decodeResult.results;
   }
 }
