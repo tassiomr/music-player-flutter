@@ -3,6 +3,7 @@ import 'package:music_preview_app/components/loading.dart';
 import 'package:music_preview_app/components/music_item.dart';
 import 'package:music_preview_app/controllers/search_controller.dart';
 
+import '../components/searching.dart';
 import '../models/music.dart';
 
 class SearchView extends StatefulWidget {
@@ -16,20 +17,20 @@ class _SearchViewState extends State<SearchView> {
   List<Music> musics = [];
   bool isLoading = false;
 
-  void getMusic() async {
+  void getMusic(String value) async {
     try {
       SearchMusicController controller = SearchMusicController();
       setState(() {
         isLoading = true;
       });
 
-      var result = await controller.getMusic("katy perry");
+      var result = await controller.getMusic(value);
 
       setState(() {
         isLoading = false;
         musics = result;
       });
-    } catch (eita, e) {
+    } catch (_, e) {
       setState(() {
         isLoading = false;
       });
@@ -40,7 +41,7 @@ class _SearchViewState extends State<SearchView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getMusic();
+    getMusic("Katy Perry");
   }
 
   @override
@@ -68,42 +69,7 @@ class _SearchViewState extends State<SearchView> {
             Center(
               child: Column(
                 children: [
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              const Expanded(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: "Search a music or artist",
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: Material(
-                                    color: Theme.of(context).colorScheme.inversePrimary,
-                                    child: Ink(
-                                      decoration: const ShapeDecoration(
-                                        color: Colors.brown,
-                                        shape: CircleBorder(),
-                                      ),
-                                      child: IconButton(
-                                        icon: const Icon(Icons.search),
-                                        onPressed: getMusic,
-                                        color: Colors.grey[200],
-                                      ),
-                                    ),
-                                  )),
-                            ],
-                          ))),
+                  SearchingComponent(getMusic: getMusic,),
                   for (var music in musics) MusicItem(music: music)
                 ],
               ),
