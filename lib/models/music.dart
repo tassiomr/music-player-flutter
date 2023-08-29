@@ -29,9 +29,11 @@ class Music {
   }
 
   static String parseMillisToTime (int millis) {
+    int totalSeconds = (millis / 1000).round();
+    int minutes = totalSeconds ~/ 60;
+    int seconds = totalSeconds % 60;
 
-
-    return "3:32";
+    return "$minutes:${seconds.toString().padLeft(2, '0')}";
   }
 
 }
