@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_preview_app/controllers/search_controller.dart';
 import 'package:music_preview_app/views/navigator_view.dart';
-import 'package:music_preview_app/views/seach_view.dart';
-
-import 'models/music.dart';
 
 void main() {
   runApp(const MyApp());
