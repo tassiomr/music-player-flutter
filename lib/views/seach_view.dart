@@ -30,7 +30,7 @@ class _SearchViewState extends State<SearchView> {
         isLoading = false;
         musics = result;
       });
-    } catch (_, e) {
+    } catch (_) {
       setState(() {
         isLoading = false;
       });
@@ -41,7 +41,6 @@ class _SearchViewState extends State<SearchView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getMusic("Katy Perry");
   }
 
   @override
@@ -51,9 +50,7 @@ class _SearchViewState extends State<SearchView> {
     if (musics.isEmpty) {
       child = const Text('Nothing to see yet');
     } else {
-      child = ListView(
-        children: [for (var music in musics) MusicItem(music: music)],
-      );
+      child = const SizedBox();
     }
 
     if (isLoading) {
@@ -61,7 +58,22 @@ class _SearchViewState extends State<SearchView> {
     }
 
     return Container(
-      color: Theme.of(context).colorScheme.inversePrimary,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: const [
+                0.1,
+                0.5,
+                0.7,
+                0.9
+              ],
+              colors: [
+                Colors.purple.shade100,
+                Colors.red.shade100,
+                Colors.green.shade100,
+                Colors.orange.shade100.withOpacity(0.9),
+              ])),
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: ListView(
@@ -70,7 +82,9 @@ class _SearchViewState extends State<SearchView> {
               child: Column(
                 children: [
                   SearchingComponent(getMusic: getMusic,),
-                  for (var music in musics) MusicItem(music: music)
+                  child,
+                  for (var music in musics)
+                    MusicItem(music: music)
                 ],
               ),
             )
