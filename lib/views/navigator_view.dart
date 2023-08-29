@@ -1,4 +1,3 @@
-import "package:english_words/english_words.dart";
 import "package:flutter/material.dart";
 import "package:music_preview_app/views/generator_view.dart";
 import "package:music_preview_app/views/seach_view.dart";
@@ -12,7 +11,6 @@ class NavigatorView extends StatefulWidget {
 
 class _NavigatorViewState extends State<NavigatorView> {
   int selectedIndex = 0;
-  String text = "oxi";
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +56,6 @@ class _NavigatorViewState extends State<NavigatorView> {
               print(index);
               setState(() {
                 selectedIndex = index;
-                text = WordPair.random().asCamelCase;
               });
             },
           )),
