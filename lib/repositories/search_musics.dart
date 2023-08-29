@@ -5,7 +5,7 @@ import '../services/network.dart';
 
 class SearchMusicImpl extends ISearchResult {
   @override
-  Future<http.Response> getMusics(String term) {
-    return Network().getData("https://itunes.apple.com/search?term=$term");
+  Future<http.Response> getMusics(String term) async {
+    return await Network().getData("https://itunes.apple.com/search?term=$term&limit=1");
   }
 }
