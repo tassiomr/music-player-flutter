@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SearchingComponent extends StatefulWidget {
-  SearchingComponent({super.key, required this.getMusic });
+  const SearchingComponent({super.key, required this.getMusic });
 
-  Function getMusic;
+  final Function getMusic;
 
   @override
   State<SearchingComponent> createState() => _SearchingComponentState();
@@ -56,7 +56,7 @@ class _SearchingComponentState extends State<SearchingComponent> {
                       width: 50,
                       height: 50,
                       child: Material(
-                        color: Theme.of(context).colorScheme.inversePrimary,
+                        color: Colors.transparent,
                         child: Ink(
                           decoration: const ShapeDecoration(
                             color: Colors.brown,
