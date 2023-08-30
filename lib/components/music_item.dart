@@ -3,8 +3,6 @@ import "package:music_preview_app/helpers/text_tool.dart";
 import "package:music_preview_app/models/music.dart";
 import 'package:music_preview_app/helpers/responsive_layout.dart';
 
-import "package:music_preview_app/views/music_player.dart";
-
 class MusicItem extends StatelessWidget {
   const MusicItem({
     super.key,
