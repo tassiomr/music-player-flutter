@@ -1,30 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomIconButton extends StatelessWidget {
-  final Icon icon;
-  final Function action;
+import '../cubits/search_musics_cubit.dart';
 
-  const CustomIconButton({
-    super.key,
-    required this.action,
-    required this.icon
-  });
+class FavoriteButton extends StatelessWidget {
+  const FavoriteButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: Ink(
-        decoration: const ShapeDecoration(
-          color: Colors.white,
-          shape: CircleBorder(),
+    return BlocBuilder<SearchMusicsCubit, SearchMusicState>(builder: (context, state) {
+      return CustomIconButton(action: () {}, icon: state.favorite);
+    });
+  }
+}
+
+class RepeatButton extends StatelessWidget {
+  const RepeatButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SearchMusicsCubit, SearchMusicState>(
+        builder: (context, state) {
+      return CustomIconButton(action: () {}, icon: state.repeat);
+    });
+  }
+}
+
+class PlayPauseButton extends StatelessWidget {
+  const PlayPauseButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SearchMusicsCubit, SearchMusicState>(builder: (context, state) {
+      return
+            CustomIconButton(action: () {
+            context.read<SearchMusicsCubit>().actionPlayPause();
+      }, icon: state.playPause);
+    });
+  }
+}
+
+
+class CustomIconButton extends StatelessWidget {
+  final IconData icon;
+  final Function action;
+
+  const CustomIconButton({super.key, required this.action, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+      return Material(
+        color: Colors.transparent,
+        child: Ink(
+          decoration: const ShapeDecoration(
+            color: Colors.white,
+            shape: CircleBorder(),
+          ),
+          child: IconButton(
+            icon: Icon(icon),
+            onPressed: () {
+              action();
+            },
+            color: Colors.black.withOpacity(0.5),
+          ),
         ),
-        child: IconButton(
-          icon: icon,
-          onPressed: () { action(); },
-          color: Colors.black.withOpacity(0.5),
-        ),
-      ),
-    );
+      );
   }
 }
