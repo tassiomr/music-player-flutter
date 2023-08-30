@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_preview_app/views/navigator_view.dart';
 import 'package:music_preview_app/views/seach_view.dart';
 
 void main() {

@@ -17,8 +17,10 @@ class _SearchViewState extends State<SearchView> {
   List<Music> musics = [];
   bool isLoading = false;
 
+
   void getMusic(String value) async {
     try {
+
       SearchMusicController controller = SearchMusicController();
       setState(() {
         isLoading = true;
