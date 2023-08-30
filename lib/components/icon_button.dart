@@ -52,11 +52,14 @@ class CustomIconButton extends StatelessWidget {
       return Material(
         color: Colors.transparent,
         child: Ink(
+          width: 40,
+          height: 40,
           decoration: const ShapeDecoration(
             color: Colors.white,
             shape: CircleBorder(),
           ),
           child: IconButton(
+            iconSize: 14,
             icon: Icon(icon),
             onPressed: () {
               action();

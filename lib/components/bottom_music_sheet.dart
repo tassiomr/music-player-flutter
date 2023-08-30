@@ -32,58 +32,71 @@ class _BottomMusicSheetState extends State<BottomMusicSheet> {
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         stops: const [
-                          0.1,
-                          0.5,
-                          0.7,
-                          0.9
-                        ],
+                      0.1,
+                      0.5,
+                      0.7,
+                      0.9
+                    ],
                         colors: [
-                          Colors.purple.shade100,
-                          Colors.red.shade100,
-                          Colors.green.shade100,
-                          Colors.orange.shade100.withOpacity(0.9),
-                        ])),
+                      Colors.purple.shade100,
+                      Colors.red.shade100,
+                      Colors.green.shade100,
+                      Colors.orange.shade100.withOpacity(0.9),
+                    ])),
                 child: SizedBox(
-                    height: 140,
-                    width: ResponsiveLayout.getWidth(context),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
+                  height: 75,
+                  width: ResponsiveLayout.getAHundredPercentWidth(context),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width:
+                            ResponsiveLayout.getAHundredPercentWidth(context),
+                        child: LinearPercentIndicator(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 0.0, horizontal: 0.0),
+                          width: ResponsiveLayout.getWidth(context),
+                          lineHeight: 10,
+                          backgroundColor: Colors.transparent,
+                          progressColor: Colors.black.withOpacity(0.5),
+                          percent: Numbers.getPercents(
+                              snapshot.data?.inSeconds ?? 0),
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(state.music!.cover)),
-                              const Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FavoriteButton(),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  PlayPauseButton(),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  RepeatButton(),
-                                ],
-                              ),
-                            ],
+                          Image.network(
+                            state.music!.cover,
+                            width: 65,
+                            height: 65,
                           ),
-                          LinearPercentIndicator(
-                            width: ResponsiveLayout.getWidth(context) - 20,
-                            lineHeight: 10,
-                            backgroundColor: Colors.transparent,
-                            progressColor: Colors.black.withOpacity(0.5),
-                            percent:
-                                Numbers.getPercents(snapshot.data?.inSeconds ?? 0),
-                          )
+                          const SizedBox(
+                            height: 65,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FavoriteButton(),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                PlayPauseButton(),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                RepeatButton(),
+                                SizedBox(
+                                  width: 20,
+                                )
+                              ],
+                            ),
+                          ),
                         ],
                       ),
-                    )));
+                    ],
+                  ),
+                ));
           });
     });
   }
