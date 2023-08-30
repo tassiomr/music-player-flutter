@@ -8,10 +8,12 @@ import "package:music_preview_app/views/music_player.dart";
 class MusicItem extends StatelessWidget {
   const MusicItem({
     super.key,
-    required this.music
+    required this.music,
+    required this.action
   });
 
   final Music music;
+  final Function action;
 
   Widget getCollectionName(String name) {
     if(name.isNotEmpty) {
@@ -24,10 +26,7 @@ class MusicItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(context, 
-        MaterialPageRoute(builder: (context) =>  MusicPlayer(music: music)));
-      },
+      onTap: () { action(music); },
       child: SizedBox(
         width: ResponsiveLayout.getWidth(context),
         child: Card(
@@ -39,7 +38,7 @@ class MusicItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(music.folderUri,
+                    child: Image.network(music.cover,
                     )),
                 const SizedBox(width: 20,),
                 Column(

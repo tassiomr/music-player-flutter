@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 import 'music.dart';
 
-class Result {
+class Result extends Equatable{
   final int resultCount;
   final List<Music> results;
 
@@ -25,4 +27,8 @@ class Result {
         results: musics
     );
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [resultCount, results];
 }
