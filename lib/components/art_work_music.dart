@@ -15,13 +15,29 @@ class ArtWorkMusic extends StatelessWidget {
       decoration: TextDecoration.none,
     );
 
-    return Column(
-        children: [
-          Image.network(music.folderUri, width: 100, height: 100, fit: BoxFit.cover,),
-    const SizedBox(height: 25,),
-    Text(music.trackName, style: style,),
-    Text(music.artistName, style: style,),
-    const SizedBox(height: 25,),
+    return Column(children: [
+      ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+          child: Image.network(
+        music.folderUri,
+        width: 100,
+        height: 100,
+        fit: BoxFit.cover,
+      )),
+      const SizedBox(
+        height: 25,
+      ),
+      Text(
+        music.trackName,
+        style: style,
+      ),
+      Text(
+        music.artistName,
+        style: style,
+      ),
+      const SizedBox(
+        height: 25,
+      ),
     ]);
   }
 }
