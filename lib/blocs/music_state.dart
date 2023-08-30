@@ -12,7 +12,6 @@ final class MusicState extends Equatable {
   final Music music;
   final List<Music> musics;
 
-
   @override
   List<Object> get props => [isLoading, music, musics];
 }
