@@ -38,6 +38,7 @@ dependencies:
   http: ^1.1.0
   just_audio: ^0.9.34
   percent_indicator: ^4.2.3
+  flutter_bloc: ^8.1.3
 
 dev_dependencies:
   flutter_test:
